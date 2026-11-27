@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050914">
+<title>RH Itália | Reduto Online</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #087bff;
+  --blue-light: #168bff;
+  --bg: #050914;
+  --text: #f4f7ff;
+  --muted: #9baac2;
+  --panel: rgba(5,13,28,.88);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 18% 38%, rgba(0,93,255,.19), transparent 43%),
+    radial-gradient(ellipse at 85% 65%, rgba(0,85,255,.13), transparent 40%),
+    linear-gradient(115deg,#020611,#09182d 55%,#030711);
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg,transparent 30%,rgba(0,110,255,.07),transparent 75%);
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,transparent,#087bff,#65b5ff,#087bff,transparent);
+  box-shadow: 0 0 25px #087bff;
+}
+
+/* HEADER */
+
+header {
+  height: 82px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(80,145,255,.16);
+  background: rgba(2,7,17,.65);
+  backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 2;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  color: var(--blue);
+  font-size: 38px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.8px;
+}
+
+.brand-name small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #a9b9d3;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: #c1cce0;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #d8e4f8;
+  font-size: 11px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00df83;
+  box-shadow: 0 0 12px #00df83;
+}
+
+/* MAIN */
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 65px 5%;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items: center;
+  gap: 65px;
+  position: relative;
+  z-index: 1;
+}
+
+/* APRESENTAÇÃO */
+
+.presentation {
+  position: relative;
+}
+
+.background-mark {
+  position: absolute;
+  top: -130px;
+  left: -15px;
+  z-index: -1;
+  font-size: clamp(130px,19vw,240px);
+  font-weight: 800;
+  letter-spacing: -18px;
+  color: rgba(69,137,226,.075);
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border: 1px solid rgba(0,123,255,.65);
+  border-radius: 30px;
+  color: #c6ddff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 26px;
+  background: rgba(0,67,160,.12);
+}
+
+.eyebrow span {
+  color: var(--blue);
+}
+
+.hero-title {
+  font-size: clamp(40px,5.2vw,69px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -3px;
+  max-width: 650px;
+}
+
+.hero-title strong {
+  color: var(--blue);
+}
+
+.hero-description {
+  color: #afbed5;
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-top: 22px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.feature {
+  min-height: 110px;
+  padding: 17px 8px;
+  border: 1px solid rgba(92,143,211,.17);
+  border-radius: 14px;
+  background: linear-gradient(145deg,rgba(12,28,52,.78),rgba(3,10,23,.9));
+  text-align: center;
+  transition: .25s;
+}
+
+.feature:hover {
+  border-color: rgba(0,123,255,.7);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,85,255,.12);
+}
+
+.feature-icon {
+  font-size: 23px;
+  color: var(--blue-light);
+  margin-bottom: 12px;
+}
+
+.feature p {
+  font-size: 10px;
+  color: #d9e5f8;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* LOGIN */
+
+.login-wrapper {
+  width: 100%;
+  max-width: 450px;
+  justify-self: end;
+}
+
+.login-card {
+  padding: 42px 38px;
+  border: 1px solid rgba(41,127,255,.48);
+  border-radius: 22px;
+  background: var(--panel);
+  box-shadow:
+    0 0 45px rgba(0,85,255,.12),
+    inset 0 0 35px rgba(0,73,180,.045);
+  backdrop-filter: blur(22px);
+}
+
+.login-card::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 65px;
+  background: var(--blue);
+  box-shadow: 0 0 15px var(--blue);
+  margin: -42px auto 35px;
+}
+
+.login-logo {
+  text-align: center;
+  font-size: 39px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: -.8px;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.field {
+  margin-bottom: 17px;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #c3d2e9;
+  margin-bottom: 9px;
+}
+
+.input-wrap {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid rgba(102,143,195,.23);
+  border-radius: 12px;
+  background: rgba(14,26,45,.75);
+  transition: .2s;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,123,255,.10);
+}
+
+.input-icon {
+  color: #a9c1e2;
+  font-size: 17px;
+}
+
+.input-wrap input {
+  min-width: 0;
+  flex: 1;
+  border: none;
+  outline: none;
+  color: white;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.input-wrap input::placeholder {
+  color: #7586a2;
+}
+
+.toggle-password {
+  border: none;
+  background: none;
+  color: #a9c1e2;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 19px 0 24px;
+  font-size: 11px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c8d7ed;
+}
+
+.remember input {
+  accent-color: var(--blue);
+}
+
+.forgot {
+  color: #168bff;
+  text-decoration: none;
+}
+
+.login-button {
+  height: 55px;
+  width: 100%;
+  border: none;
+  border-radius: 11px;
+  background: linear-gradient(110deg,#0874f9,#087bff);
+  color: white;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0,95,255,.22);
+  transition: .2s;
+}
+
+.login-button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.login-button:active {
+  transform: scale(.99);
+}
+
+.login-note {
+  text-align: center;
+  color: #7586a2;
+  font-size: 10px;
+  margin-top: 23px;
+  line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 22px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid rgba(80,145,255,.13);
+  color: #71829d;
+  font-size: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+/* MOBILE */
+
+@media(max-width: 850px) {
+  header {
+    height: 70px;
+    padding: 0 6%;
+  }
+
+  nav {
+    display: none;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    padding: 48px 6% 55px;
+    gap: 42px;
+  }
+
+  .presentation {
+    text-align: center;
+  }
+
+  .background-mark {
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 145px;
+    letter-spacing: -10px;
+  }
+
+  .hero-title {
+    font-size: clamp(37px,9vw,54px);
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    margin: 18px auto 0;
+    font-size: 13px;
+  }
+
+  .features {
+    margin-top: 30px;
+    gap: 8px;
+  }
+
+  .feature {
+    min-height: 100px;
+    padding: 13px 5px;
+  }
+
+  .feature p {
+    font-size: 9px;
+  }
+
+  .login-wrapper {
+    justify-self: center;
+    max-width: 480px;
+  }
+
+  .login-card {
+    padding: 37px 25px;
+  }
+
+  .login-card::before {
+    margin-top: -37px;
+  }
+}
+
+@media(max-width: 390px) {
+  .brand-name {
+    font-size: 19px;
+  }
+
+  .status {
+    font-size: 9px;
+  }
+
+  .features {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .feature {
+    min-height: 90px;
+  }
+
+  .form-options {
+    font-size: 10px;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">♛</div>
+    <div class="brand-name">
+      ITÁLIA
+      <small>REDUTO ONLINE</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#inicio">INÍCIO</a>
+    <a href="#recursos">RECURSOS</a>
+    <a href="#acesso">ACESSO</a>
+  </nav>
+
+  <div class="status">
+    <span class="status-dot"></span>
+    Ambiente online
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="presentation">
+  <div class="background-mark">RH</div>
+
+  <div class="eyebrow">
+    <span>●</span> SISTEMA ADMINISTRATIVO
+  </div>
+
+  <h1 class="hero-title">
+    GESTÃO E <strong>ORGANIZAÇÃO</strong>
+    EM UM SÓ LUGAR.
+  </h1>
+
+  <p class="hero-description">
+    Uma plataforma exclusiva para centralizar informações,
+    acompanhar atividades e organizar a estrutura interna
+    da Itália dentro do universo Reduto Online.
+  </p>
+
+  <div class="features" id="recursos">
+    <div class="feature">
+      <div class="feature-icon">♙</div>
+      <p>Gestão de<br>membros</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">◷</div>
+      <p>Controle de<br>frequência</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">▤</div>
+      <p>Metas e<br>registros</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">⌘</div>
+      <p>Gestão de<br>equipes</p>
+    </div>
+  </div>
+</section>
+
+<section class="login-wrapper" id="acesso">
+  <div class="login-card">
+
+    <div class="login-logo">ITÁLIA</div>
+
+    <h2>Bem-vindo de volta</h2>
+    <p class="login-subtitle">
+      Entre com suas credenciais de acesso
+    </p>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label for="usuario">USUÁRIO OU PASSAPORTE</label>
+        <div class="input-wrap">
+          <span class="input-icon">♙</span>
+          <input
+            id="usuario"
+            type="text"
+            placeholder="Digite seu usuário"
+            autocomplete="username"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="senha">SENHA</label>
+        <div class="input-wrap">
+          <span class="input-icon">♧</span>
+          <input
+            id="senha"
+            type="password"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          >
+          <button
+            type="button"
+            class="toggle-password"
+            id="togglePassword"
+            aria-label="Mostrar senha"
+          >◉</button>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <label class="remember">
+          <input type="checkbox" id="remember">
+          Manter conectado
+        </label>
+
+        <a href="#" class="forgot" id="forgotPassword">
+          Esqueceu a senha?
+        </a>
+      </div>
+
+      <button class="login-button" type="submit">
+        ENTRAR NO SISTEMA →
+      </button>
+
+    </form>
+
+    <p class="login-note">
+      Acesso restrito a integrantes autorizados.<br>
+      Reduto Online · Itália
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>© 2026 ITÁLIA · REDUTO ONLINE</span>
+  <span>SISTEMA ADMINISTRATIVO</span>
+</footer>
+
+</div>
+
+<script>
+const password = document.getElementById('senha');
+const toggle = document.getElementById('togglePassword');
+
+toggle.addEventListener('click', () => {
+  const visible = password.type === 'password';
+  password.type = visible ? 'text' : 'password';
+  toggle.textContent = visible ? '◎' : '◉';
+  toggle.setAttribute(
+    'aria-label',
+    visible ? 'Ocultar senha' : 'Mostrar senha'
+  );
+});
+
+document.getElementById('loginForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  alert('A autenticação será ativada após a configuração do Supabase.');
+});
+
+document.getElementById('forgotPassword').addEventListener('click', (event) => {
+  event.preventDefault();
+  alert('A recuperação de senha será configurada posteriormente.');
+});
+</script>
+
+</body>
+</html>

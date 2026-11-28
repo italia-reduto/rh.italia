@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,691 +9,859 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --blue: #087bff;
-  --blue-light: #168bff;
-  --bg: #050914;
-  --text: #f4f7ff;
-  --muted: #9baac2;
-  --panel: rgba(5,13,28,.88);
+    --bg: #050914;
+    --panel: #0b1425;
+    --panel-light: #101d32;
+    --blue: #2388ff;
+    --blue-light: #54a6ff;
+    --text: #f3f6fc;
+    --muted: #8795aa;
+    --border: rgba(130,160,200,.13);
+    --danger: #ff5364;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(ellipse at 50% -20%, rgba(35,136,255,.15), transparent 55%),
+        var(--bg);
+    color: var(--text);
 }
 
-.page {
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 18% 38%, rgba(0,93,255,.19), transparent 43%),
-    radial-gradient(ellipse at 85% 65%, rgba(0,85,255,.13), transparent 40%),
-    linear-gradient(115deg,#020611,#09182d 55%,#030711);
+button, input {
+    font: inherit;
 }
 
-.page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(115deg,transparent 30%,rgba(0,110,255,.07),transparent 75%);
+button {
+    cursor: pointer;
 }
 
-.page::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,transparent,#087bff,#65b5ff,#087bff,transparent);
-  box-shadow: 0 0 25px #087bff;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-/* HEADER */
+.container {
+    width: min(1160px, calc(100% - 48px));
+    margin: auto;
+}
+
+/* CABEÇALHO */
 
 header {
-  height: 82px;
-  padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(80,145,255,.16);
-  background: rgba(2,7,17,.65);
-  backdrop-filter: blur(16px);
-  position: relative;
-  z-index: 2;
+    height: 82px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(5,9,20,.82);
+    backdrop-filter: blur(16px);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.header-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.brand-icon {
-  color: var(--blue);
-  font-size: 38px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.brand-name {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -.8px;
+.logo-symbol {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: white;
+    font-size: 23px;
+    background: linear-gradient(145deg, #278fff, #1050b5);
+    box-shadow: 0 5px 22px rgba(35,136,255,.2);
 }
 
-.brand-name small {
-  display: block;
-  font-size: 9px;
-  letter-spacing: 4px;
-  color: #a9b9d3;
-  text-align: center;
+.logo-name {
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo-subtitle {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
 nav {
-  display: flex;
-  gap: 30px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
 nav a {
-  color: #c1cce0;
-  font-size: 12px;
-  text-decoration: none;
-  font-weight: 600;
+    color: #aab6c8;
+    font-size: 12px;
+    font-weight: 600;
+    transition: .2s;
 }
 
 nav a:hover {
-  color: white;
+    color: white;
 }
 
-.status {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #d8e4f8;
-  font-size: 11px;
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aab6c8;
+    font-size: 11px;
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #00df83;
-  box-shadow: 0 0 12px #00df83;
-}
-
-/* MAIN */
-
-main {
-  flex: 1;
-  width: 100%;
-  max-width: 1500px;
-  margin: auto;
-  padding: 65px 5%;
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  align-items: center;
-  gap: 65px;
-  position: relative;
-  z-index: 1;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #31d18b;
+    box-shadow: 0 0 10px rgba(49,209,139,.6);
 }
 
 /* APRESENTAÇÃO */
 
-.presentation {
-  position: relative;
+main {
+    padding: 76px 0 55px;
 }
 
-.background-mark {
-  position: absolute;
-  top: -130px;
-  left: -15px;
-  z-index: -1;
-  font-size: clamp(130px,19vw,240px);
-  font-weight: 800;
-  letter-spacing: -18px;
-  color: rgba(69,137,226,.075);
-  pointer-events: none;
+.hero {
+    max-width: 760px;
+    margin-bottom: 42px;
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 14px;
-  border: 1px solid rgba(0,123,255,.65);
-  border-radius: 30px;
-  color: #c6ddff;
-  font-size: 10px;
-  letter-spacing: 2px;
-  margin-bottom: 26px;
-  background: rgba(0,67,160,.12);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blue-light);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
-.eyebrow span {
-  color: var(--blue);
+.eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--blue);
 }
 
-.hero-title {
-  font-size: clamp(40px,5.2vw,69px);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -3px;
-  max-width: 650px;
+h1 {
+    font-size: clamp(30px, 5vw, 49px);
+    line-height: 1.12;
+    font-weight: 900;
+    letter-spacing: -1.8px;
 }
 
-.hero-title strong {
-  color: var(--blue);
+h1 span {
+    color: var(--blue-light);
 }
 
 .hero-description {
-  color: #afbed5;
-  font-size: 15px;
-  line-height: 1.8;
-  max-width: 480px;
-  margin-top: 22px;
+    max-width: 610px;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
 }
+
+/* CARDS DE RECURSOS */
 
 .features {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 12px;
-  margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 34px;
 }
 
-.feature {
-  min-height: 110px;
-  padding: 17px 8px;
-  border: 1px solid rgba(92,143,211,.17);
-  border-radius: 14px;
-  background: linear-gradient(145deg,rgba(12,28,52,.78),rgba(3,10,23,.9));
-  text-align: center;
-  transition: .25s;
-}
-
-.feature:hover {
-  border-color: rgba(0,123,255,.7);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0,85,255,.12);
+.feature-card {
+    min-height: 118px;
+    padding: 20px;
+    background: linear-gradient(145deg, rgba(16,29,50,.92), rgba(9,17,31,.92));
+    border: 1px solid var(--border);
+    border-radius: 13px;
 }
 
 .feature-icon {
-  font-size: 23px;
-  color: var(--blue-light);
-  margin-bottom: 12px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 13px;
+    border-radius: 9px;
+    color: var(--blue-light);
+    background: rgba(35,136,255,.12);
+    font-size: 16px;
 }
 
-.feature p {
-  font-size: 10px;
-  color: #d9e5f8;
-  line-height: 1.5;
-  font-weight: 600;
+.feature-card h3 {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
-/* LOGIN */
-
-.login-wrapper {
-  width: 100%;
-  max-width: 450px;
-  justify-self: end;
-}
-
-.login-card {
-  padding: 42px 38px;
-  border: 1px solid rgba(41,127,255,.48);
-  border-radius: 22px;
-  background: var(--panel);
-  box-shadow:
-    0 0 45px rgba(0,85,255,.12),
-    inset 0 0 35px rgba(0,73,180,.045);
-  backdrop-filter: blur(22px);
-}
-
-.login-card::before {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 65px;
-  background: var(--blue);
-  box-shadow: 0 0 15px var(--blue);
-  margin: -42px auto 35px;
-}
-
-.login-logo {
-  text-align: center;
-  font-size: 39px;
-  font-weight: 800;
-  color: var(--blue);
-  letter-spacing: 5px;
-  margin-bottom: 10px;
-}
-
-.login-card h2 {
-  font-size: 24px;
-  text-align: center;
-  letter-spacing: -.8px;
-}
-
-.login-subtitle {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 8px;
-  margin-bottom: 32px;
-}
-
-.field {
-  margin-bottom: 17px;
-}
-
-.field label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: #c3d2e9;
-  margin-bottom: 9px;
-}
-
-.input-wrap {
-  height: 55px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 15px;
-  border: 1px solid rgba(102,143,195,.23);
-  border-radius: 12px;
-  background: rgba(14,26,45,.75);
-  transition: .2s;
-}
-
-.input-wrap:focus-within {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(0,123,255,.10);
-}
-
-.input-icon {
-  color: #a9c1e2;
-  font-size: 17px;
-}
-
-.input-wrap input {
-  min-width: 0;
-  flex: 1;
-  border: none;
-  outline: none;
-  color: white;
-  background: transparent;
-  font-family: inherit;
-  font-size: 13px;
-}
-
-.input-wrap input::placeholder {
-  color: #7586a2;
-}
-
-.toggle-password {
-  border: none;
-  background: none;
-  color: #a9c1e2;
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.form-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin: 19px 0 24px;
-  font-size: 11px;
-}
-
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #c8d7ed;
-}
-
-.remember input {
-  accent-color: var(--blue);
-}
-
-.forgot {
-  color: #168bff;
-  text-decoration: none;
-}
-
-.login-button {
-  height: 55px;
-  width: 100%;
-  border: none;
-  border-radius: 11px;
-  background: linear-gradient(110deg,#0874f9,#087bff);
-  color: white;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: 0 7px 25px rgba(0,95,255,.22);
-  transition: .2s;
-}
-
-.login-button:hover {
-  filter: brightness(1.15);
-  transform: translateY(-2px);
-}
-
-.login-button:active {
-  transform: scale(.99);
-}
-
-.login-note {
-  text-align: center;
-  color: #7586a2;
-  font-size: 10px;
-  margin-top: 23px;
-  line-height: 1.6;
-}
-
-/* FOOTER */
-
-footer {
-  padding: 22px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  border-top: 1px solid rgba(80,145,255,.13);
-  color: #71829d;
-  font-size: 10px;
-  position: relative;
-  z-index: 1;
-}
-
-/* MOBILE */
-
-@media(max-width: 850px) {
-  header {
-    height: 70px;
-    padding: 0 6%;
-  }
-
-  nav {
-    display: none;
-  }
-
-  main {
-    grid-template-columns: 1fr;
-    padding: 48px 6% 55px;
-    gap: 42px;
-  }
-
-  .presentation {
-    text-align: center;
-  }
-
-  .background-mark {
-    top: -45px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 145px;
-    letter-spacing: -10px;
-  }
-
-  .hero-title {
-    font-size: clamp(37px,9vw,54px);
-    letter-spacing: -2px;
-  }
-
-  .hero-description {
-    margin: 18px auto 0;
-    font-size: 13px;
-  }
-
-  .features {
-    margin-top: 30px;
-    gap: 8px;
-  }
-
-  .feature {
-    min-height: 100px;
-    padding: 13px 5px;
-  }
-
-  .feature p {
-    font-size: 9px;
-  }
-
-  .login-wrapper {
-    justify-self: center;
-    max-width: 480px;
-  }
-
-  .login-card {
-    padding: 37px 25px;
-  }
-
-  .login-card::before {
-    margin-top: -37px;
-  }
-}
-
-@media(max-width: 390px) {
-  .brand-name {
-    font-size: 19px;
-  }
-
-  .status {
-    font-size: 9px;
-  }
-
-  .features {
-    grid-template-columns: repeat(2,1fr);
-  }
-
-  .feature {
-    min-height: 90px;
-  }
-
-  .form-options {
+.feature-card p {
+    color: var(--muted);
     font-size: 10px;
-  }
-}
-
-@media(prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition: none !important;
-  }
+    line-height: 1.5;
 }
 </style>
 </head>
-
 <body>
-<div class="page">
 
 <header>
-  <div class="brand">
-    <div class="brand-icon">♛</div>
-    <div class="brand-name">
-      ITÁLIA
-      <small>REDUTO ONLINE</small>
+    <div class="container header-content">
+        <div class="logo">
+            <div class="logo-symbol">♛</div>
+            <div>
+                <div class="logo-name">ITÁLIA</div>
+                <div class="logo-subtitle">REDUTO ONLINE</div>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#acesso">Acesso</a>
+        </nav>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            Ambiente online
+        </div>
     </div>
-  </div>
-
-  <nav>
-    <a href="#inicio">INÍCIO</a>
-    <a href="#recursos">RECURSOS</a>
-    <a href="#acesso">ACESSO</a>
-  </nav>
-
-  <div class="status">
-    <span class="status-dot"></span>
-    Ambiente online
-  </div>
 </header>
 
-<main id="inicio">
+<main class="container" id="inicio">
 
-<section class="presentation">
-  <div class="background-mark">RH</div>
+    <section class="hero">
+        <div class="eyebrow">SISTEMA INTERNO ITÁLIA</div>
 
-  <div class="eyebrow">
-    <span>●</span> SISTEMA ADMINISTRATIVO
-  </div>
+        <h1>
+            GESTÃO E ORGANIZAÇÃO<br>
+            EM <span>UM SÓ LUGAR.</span>
+        </h1>
 
-  <h1 class="hero-title">
-    GESTÃO E <strong>ORGANIZAÇÃO</strong>
-    EM UM SÓ LUGAR.
-  </h1>
+        <p class="hero-description">
+            Uma plataforma interna desenvolvida para centralizar
+            informações, organizar integrantes e acompanhar as
+            atividades da organização Itália dentro do Reduto Online.
+        </p>
+    </section>
 
-  <p class="hero-description">
-    Uma plataforma exclusiva para centralizar informações,
-    acompanhar atividades e organizar a estrutura interna
-    da Itália dentro do universo Reduto Online.
-  </p>
+    <section class="features" id="recursos">
+        <article class="feature-card">
+            <div class="feature-icon">♙</div>
+            <h3>Gestão de membros</h3>
+            <p>Cadastro e organização dos integrantes.</p>
+        </article>
 
-  <div class="features" id="recursos">
-    <div class="feature">
-      <div class="feature-icon">♙</div>
-      <p>Gestão de<br>membros</p>
-    </div>
+        <article class="feature-card">
+            <div class="feature-icon">◷</div>
+            <h3>Controle de frequência</h3>
+            <p>Acompanhamento de pontos e jornadas.</p>
+        </article>
 
-    <div class="feature">
-      <div class="feature-icon">◷</div>
-      <p>Controle de<br>frequência</p>
-    </div>
+        <article class="feature-card">
+            <div class="feature-icon">▤</div>
+            <h3>Metas e registros</h3>
+            <p>Envio e acompanhamento de atividades.</p>
+        </article>
 
-    <div class="feature">
-      <div class="feature-icon">▤</div>
-      <p>Metas e<br>registros</p>
-    </div>
+        <article class="feature-card">
+            <div class="feature-icon">♧</div>
+            <h3>Gestão de equipes</h3>
+            <p>Organização das equipes e responsabilidades.</p>
+        </article>
+    </section>
 
-    <div class="feature">
-      <div class="feature-icon">⌘</div>
-      <p>Gestão de<br>equipes</p>
-    </div>
-  </div>
-</section>
+    <section class="login-section" id="acesso">
+        <div class="login-card">
+            <div class="login-heading">
+                <div class="login-icon">♙</div>
+                <div>
+                    <h2>Acesso ao sistema</h2>
+                    <p>Entre com suas credenciais de integrante.</p>
+                </div>
+            </div>
 
-<section class="login-wrapper" id="acesso">
-  <div class="login-card">
+            <form id="loginForm">
+                <label for="passaporte">PASSAPORTE</label>
+                <input
+                    type="text"
+                    id="passaporte"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    maxlength="20"
+                    placeholder="Digite seu passaporte"
+                    autocomplete="username"
+                    required
+                >
 
-    <div class="login-logo">ITÁLIA</div>
+                <label for="senha">SENHA</label>
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
 
-    <h2>Bem-vindo de volta</h2>
-    <p class="login-subtitle">
-      Entre com suas credenciais de acesso
-    </p>
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        id="togglePassword"
+                        aria-label="Mostrar senha"
+                    >
+                        <svg viewBox="0 0 24 24" width="20" height="20"
+                             fill="none" stroke="currentColor"
+                             stroke-width="1.8" stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
 
-    <form id="loginForm">
+                <div class="login-options">
+                    <label class="remember-label">
+                        <input type="checkbox" id="remember" checked>
+                        Manter conectado
+                    </label>
 
-      <div class="field">
-        <label for="usuario">USUÁRIO OU PASSAPORTE</label>
-        <div class="input-wrap">
-          <span class="input-icon">♙</span>
-          <input
-            id="usuario"
-            type="text"
-            placeholder="Digite seu usuário"
-            autocomplete="username"
-            required
-          >
+                    <a href="#" id="forgotPassword">Esqueceu a senha?</a>
+                </div>
+
+                <p id="loginMessage" class="login-message" role="status"></p>
+
+                <button type="submit" class="login-button" id="loginButton">
+                    ENTRAR NO SISTEMA
+                </button>
+            </form>
+
+            <div class="login-security">
+                <span class="status-dot"></span>
+                Conexão protegida
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="field">
-        <label for="senha">SENHA</label>
-        <div class="input-wrap">
-          <span class="input-icon">♧</span>
-          <input
-            id="senha"
-            type="password"
-            placeholder="Digite sua senha"
-            autocomplete="current-password"
-            required
-          >
-          <button
-            type="button"
-            class="toggle-password"
-            id="togglePassword"
-            aria-label="Mostrar senha"
-          >◉</button>
-        </div>
-      </div>
+    <section class="policies" id="politicas">
+        <h2>Informações e políticas</h2>
+        <p class="policies-intro">
+            Consulte as diretrizes de utilização da plataforma.
+        </p>
 
-      <div class="form-options">
-        <label class="remember">
-          <input type="checkbox" id="remember">
-          Manter conectado
-        </label>
+        <details>
+            <summary>Termos de utilização</summary>
+            <p>
+                O RH Itália é uma ferramenta interna de roleplay
+                destinada à organização de integrantes e atividades
+                dentro do jogo Reduto Online. O acesso é individual
+                e deve ser utilizado conforme as regras internas.
+            </p>
+        </details>
 
-        <a href="#" class="forgot" id="forgotPassword">
-          Esqueceu a senha?
-        </a>
-      </div>
+        <details>
+            <summary>Política de privacidade</summary>
+            <p>
+                As informações cadastradas são utilizadas para
+                identificação dos integrantes e funcionamento
+                das ferramentas administrativas do sistema.
+            </p>
+        </details>
 
-      <button class="login-button" type="submit">
-        ENTRAR NO SISTEMA →
-      </button>
+        <details>
+            <summary>Política de segurança</summary>
+            <p>
+                Cada integrante deve manter suas credenciais em
+                sigilo e não compartilhar sua senha com terceiros.
+                O acesso pode ser suspenso em caso de uso indevido.
+            </p>
+        </details>
 
-    </form>
-
-    <p class="login-note">
-      Acesso restrito a integrantes autorizados.<br>
-      Reduto Online · Itália
-    </p>
-
-  </div>
-</section>
-
+        <details>
+            <summary>Tratamento e armazenamento de dados</summary>
+            <p>
+                Os dados são armazenados em serviços digitais
+                utilizados pelo sistema, sendo destinados às
+                atividades administrativas do RH Itália.
+            </p>
+        </details>
+    </section>
 </main>
 
 <footer>
-  <span>© 2026 ITÁLIA · REDUTO ONLINE</span>
-  <span>SISTEMA ADMINISTRATIVO</span>
-</footer>
+    <div class="container footer-content">
+        <span>© 2026 ITÁLIA · REDUTO ONLINE</span>
+        <a href="#politicas">Termos e políticas</a>
+    </div>
+                      </footer>
+              
+<style>
+/* ACESSO */
 
-</div>
+.login-section {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 65px;
+}
+
+.login-card {
+    width: min(100%, 480px);
+    padding: 30px;
+    background: linear-gradient(145deg, #0d192c, #091321);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 18px 55px rgba(0,0,0,.22);
+}
+
+.login-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 28px;
+}
+
+.login-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(35,136,255,.13);
+    color: var(--blue-light);
+    font-size: 21px;
+}
+
+.login-heading h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.login-heading p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.login-card form > label {
+    display: block;
+    margin: 18px 0 9px;
+    color: #aab6c8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.login-card input:not([type="checkbox"]) {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    color: white;
+    background: #070f1d;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.login-card input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(35,136,255,.1);
+}
+
+.login-card input::placeholder {
+    color: #637188;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 52px !important;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    color: #8192aa;
+    background: transparent;
+    border: 0;
+}
+
+.toggle-password:hover {
+    color: white;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 17px 0 20px;
+    font-size: 10px;
+}
+
+.remember-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #aab6c8;
+}
+
+.remember-label input {
+    accent-color: var(--blue);
+}
+
+.login-options a {
+    color: var(--blue-light);
+}
+
+.login-message {
+    display: none;
+    margin: 0 0 14px;
+    color: var(--danger);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.login-message.visible {
+    display: block;
+}
+
+.login-button {
+    width: 100%;
+    height: 49px;
+    color: white;
+    background: linear-gradient(100deg, #176bd4, #238cff);
+    border: 0;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    transition: .2s;
+}
+
+.login-button:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+
+.login-button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.login-security {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* POLÍTICAS */
+
+.policies {
+    max-width: 760px;
+    margin: 0 auto 65px;
+}
+
+.policies h2 {
+    font-size: 19px;
+}
+
+.policies-intro {
+    margin: 8px 0 20px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.policies details {
+    margin-bottom: 9px;
+    padding: 15px 17px;
+    background: rgba(12,24,42,.75);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.policies summary {
+    cursor: pointer;
+    color: #dce7f7;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.policies details p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 23px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.footer-content a:hover {
+    color: white;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 850px) {
+    .container {
+        width: min(100% - 36px, 620px);
+    }
+
+    header {
+        height: 70px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    main {
+        padding-top: 48px;
+    }
+
+    .features {
+        display: none !important;
+    }
+
+    .hero {
+        margin-bottom: 30px;
+    }
+
+    .login-section {
+        margin-bottom: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: calc(100% - 30px);
+    }
+
+    .system-status {
+        font-size: 9px;
+    }
+
+    .logo-name {
+        font-size: 15px;
+    }
+
+    .logo-symbol {
+        width: 38px;
+        height: 38px;
+    }
+
+    main {
+        padding-top: 39px;
+    }
+
+    h1 {
+        font-size: 31px;
+        letter-spacing: -1.2px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .login-card {
+        padding: 23px 19px;
+    }
+
+    .login-heading h2 {
+        font-size: 16px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const password = document.getElementById('senha');
-const toggle = document.getElementById('togglePassword');
+const SUPABASE_URL = "https://zrzmgnjaoqylsrorxslz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_uo3iru5qFTLnd1oYNyARRg_k9FTyipa";
 
-toggle.addEventListener('click', () => {
-  const visible = password.type === 'password';
-  password.type = visible ? 'text' : 'password';
-  toggle.textContent = visible ? '◎' : '◉';
-  toggle.setAttribute(
-    'aria-label',
-    visible ? 'Ocultar senha' : 'Mostrar senha'
-  );
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY,
+    {
+        auth: {
+            persistSession: true,
+            autoRefreshToken: true
+        }
+    }
+);
+
+const form = document.getElementById("loginForm");
+const passaporteInput = document.getElementById("passaporte");
+const senhaInput = document.getElementById("senha");
+const message = document.getElementById("loginMessage");
+const loginButton = document.getElementById("loginButton");
+const togglePassword = document.getElementById("togglePassword");
+
+passaporteInput.addEventListener("input", () => {
+    passaporteInput.value = passaporteInput.value.replace(/\D/g, "");
 });
 
-document.getElementById('loginForm').addEventListener('submit', (event) => {
-  event.preventDefault();
-  alert('A autenticação será ativada após a configuração do Supabase.');
+togglePassword.addEventListener("click", () => {
+    const showing = senhaInput.type === "text";
+    senhaInput.type = showing ? "password" : "text";
+    togglePassword.setAttribute(
+        "aria-label",
+        showing ? "Mostrar senha" : "Ocultar senha"
+    );
 });
 
-document.getElementById('forgotPassword').addEventListener('click', (event) => {
-  event.preventDefault();
-  alert('A recuperação de senha será configurada posteriormente.');
+function showMessage(text) {
+    message.textContent = text;
+    message.classList.add("visible");
+}
+
+function hideMessage() {
+    message.textContent = "";
+    message.classList.remove("visible");
+}
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    hideMessage();
+
+    const passaporte = passaporteInput.value.trim();
+    const senha = senhaInput.value;
+
+    if (!/^[0-9]{1,20}$/.test(passaporte)) {
+        showMessage("Digite um passaporte válido.");
+        return;
+    }
+
+    if (!senha) {
+        showMessage("Digite sua senha.");
+        return;
+    }
+
+    loginButton.disabled = true;
+    loginButton.textContent = "VERIFICANDO ACESSO...";
+
+    try {
+        const response = await fetch(
+            `${SUPABASE_URL}/functions/v1/login-membro`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                },
+                body: JSON.stringify({ passaporte, senha })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            if (response.status === 429 && result.bloqueado_ate) {
+                const until = new Date(result.bloqueado_ate);
+                showMessage(
+                    `Acesso bloqueado temporariamente. Tente novamente após ${until.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"})}.`
+                );
+            } else if (result.tentativas_restantes !== undefined) {
+                showMessage(
+                    `${result.error || "Passaporte ou senha incorretos."} Restam ${result.tentativas_restantes} tentativa(s).`
+                );
+            } else {
+                showMessage(result.error || "Não foi possível realizar o acesso.");
+            }
+            return;
+        }
+
+        if (!result.success || !result.session) {
+            showMessage("Não foi possível validar sua sessão.");
+            return;
+        }
+
+        const { error } = await supabaseClient.auth.setSession({
+            access_token: result.session.access_token,
+            refresh_token: result.session.refresh_token
+        });
+
+        if (error) {
+            showMessage("Erro ao iniciar sua sessão. Tente novamente.");
+            return;
+        }
+
+        showMessage(`Acesso autorizado. Bem-vindo, ${result.membro.nome}!`);
+        message.style.color = "#31d18b";
+        senhaInput.value = "";
+
+        // O redirecionamento para painel.html será ativado
+        // quando o painel administrativo estiver pronto.
+
+    } catch (error) {
+        showMessage("Falha de conexão. Verifique sua internet e tente novamente.");
+    } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = "ENTRAR NO SISTEMA";
+    }
+});
+
+document.getElementById("forgotPassword").addEventListener("click", (event) => {
+    event.preventDefault();
+    showMessage("Para recuperar seu acesso, solicite suporte à administração da Itália.");
 });
 </script>
 
